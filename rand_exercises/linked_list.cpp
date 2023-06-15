@@ -4,6 +4,34 @@
 
 using namespace std;
 
+struct Node {
+    int value;
+    Node *next;
+};
+
+void insert_node(Node *&head, int value) {
+    Node *new_node = new Node;
+    new_node->value = value;
+    new_node->next = head;
+    head = new_node;
+}
+
+void print_list(Node *head) {
+    while (head->next != nullptr) {
+        cout << head->value << endl;
+        head = head->next;
+    }
+    return;
+}
+
+void deallocate_list(Node *head) {
+    while (head != nullptr) {
+        Node *temp = head;
+        head = head->next;
+        delete temp;
+    }
+}
+
 vector<int> create_arr(int size) {
     vector<int> arr;
     for (int i = 0; i < size; i++) {
@@ -12,12 +40,17 @@ vector<int> create_arr(int size) {
     return arr;
 }
 
-int main(int args, char *kvargs[]) {
+int main() {
     vector<int> arr = create_arr(10);
-    for (int index : arr) {
-        cout << arr[index] << endl;
+    Node *head = new Node;
+    head->next = nullptr;
+
+    for (int i : arr) {
+        insert_node(head, arr[i]);
     }
-    cout << "Done" << endl;
+    print_list(head);
+
+    deallocate_list(head);
     return 0;
 }
 
