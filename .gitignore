@@ -1,1 +1,13 @@
-build/*
+# C++ build artifacts
+*.o
+*.obj
+*.exe
+*.out
+*.dll
+*.so
+*.dylib
+
+# C++ build directories
+build/
+bin/
+out/
